@@ -24,4 +24,4 @@ $ docker exec -it curl sh
 
 
 Prev: [Part 1.4](./part1-4.md)  
-Next: [Part 1.6](./part1-6.md)
+Next: [Part 1.6](./part1-6/part1-6.md)
