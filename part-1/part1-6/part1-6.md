@@ -24,5 +24,6 @@ $ docker run docker-clock
 15
 ```
 
+
 Prev: [Part 1.5](../part1-5.md)  
-Next: [Part 1.7](./part1-7/)
+Next: [Part 1.7](../part1-7/part1-7.md)
