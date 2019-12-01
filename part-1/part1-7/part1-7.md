@@ -43,3 +43,4 @@ Searching..
 
 
 Prev: [Part 1.6](../part1-6/part1-6.md)  
+Next: [Part 1.8](../part1-8.md)
