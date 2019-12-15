@@ -11,4 +11,4 @@ $ docker run -d -v $(pwd)/logs/logs.txt:/myapp/logs.txt -p 8000:8000 --name back
 
 
 Prev: [Part 1.10](../part1-10/part1-10.md)  
-Next: Part 1.12
+Next: [Part 1.12](../part1-12/part1-12.md)
