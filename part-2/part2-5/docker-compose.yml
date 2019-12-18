@@ -1,0 +1,27 @@
+version: "3.7"
+
+services: 
+    frontend:
+        build: ./frontend/
+        container_name: frontend
+        ports: 
+            - 5000:5000
+        environment: 
+            - API_URL=http://ip172-18-0-28-bnt66egt96900097j9rg-8000.direct.labs.play-with-docker.com
+    
+    backend:
+        build: ./backend/
+        container_name: backend
+        ports: 
+            - 8000:8000
+        environment: 
+            - FRONT_URL=http://ip172-18-0-28-bnt66egt96900097j9rg-5000.direct.labs.play-with-docker.com
+            - REDIS=redis
+            - REDIS_PORT=6379
+        volumes: 
+            - ./backend/logs/logs.txt:/myapp/logs.txt
+    
+    redis:
+        image: redis
+        container_name: redis
+        hostname: redis
