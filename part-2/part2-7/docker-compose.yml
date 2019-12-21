@@ -1,0 +1,27 @@
+version: "3.7"
+
+services: 
+    frontend:
+        build: ./frontend/
+        container_name: frontend
+        ports: 
+            - 3000:3000
+
+    backend:
+        build: ./backend/
+        container_name: backend
+        ports: 
+            - 5000:5000
+        volumes: 
+            - model:/src/model
+
+    training:
+        build: ./training/
+        container_name: training
+        volumes: 
+            - model:/src/model
+            - images:/src/imgs
+
+volumes: 
+    model:
+    images:
