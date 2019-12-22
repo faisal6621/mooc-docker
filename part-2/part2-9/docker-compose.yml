@@ -1,0 +1,56 @@
+version: "3.7"
+
+services: 
+    postgres:
+        image: postgres
+        container_name: postgres
+        hostname: postgres
+        restart: unless-stopped
+        environment: 
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=postgres
+        volumes: 
+            - ./database:/var/lib/postgresql/data
+
+    redis:
+        image: redis
+        container_name: redis
+        hostname: redis
+        volumes: 
+            - ./cache:/data
+
+    backend:
+        build: ./backend/
+        container_name: backend
+        ports: 
+            - 8000:8000
+        environment: 
+            - FRONT_URL=http://ip172-18-0-23-bnvog28t9690008es1pg-5000.direct.labs.play-with-docker.com
+            - REDIS=redis
+            - REDIS_PORT=6379
+            - DB_USERNAME=postgres
+            - DB_PASSWORD=postgres
+            - DB_NAME=postgres
+            - DB_HOST=postgres
+        volumes: 
+            - ./backend/logs/logs.txt:/myapp/logs.txt
+        depends_on: 
+            - redis
+            - postgres
+
+    frontend:
+        build: ./frontend/
+        container_name: frontend
+        ports: 
+            - 5000:5000
+        environment: 
+            - API_URL=http://ip172-18-0-23-bnvog28t9690008es1pg-8000.direct.labs.play-with-docker.com
+
+    nginx:
+        image: nginx
+        container_name: nginx
+        ports: 
+            - 8080:80
+        volumes: 
+            - ./nginx.conf:/etc/nginx/nginx.conf
